@@ -1,0 +1,34 @@
+﻿@model List<Hospital>
+
+<h1>LISTA HOSPITALES</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Camas</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(Hospital hospi in Model)
+        {
+            <tr>
+                <td>@hospi.Nombre</td>
+                <td>@hospi.Direccion</td>
+                <td>@hospi.Telefono</td>
+                <td>@hospi.Camas</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+

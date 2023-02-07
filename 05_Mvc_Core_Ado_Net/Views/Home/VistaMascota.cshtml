@@ -1,0 +1,21 @@
+﻿@model Mascota
+
+<h1>Vista Mascota</h1>
+
+<h2>Nombre: @Model.Nombre</h2>
+<h2>Nombre: @Model.Raza</h2>
+<h2>Nombre: @Model.Edad</h2>
+
+@section home {
+    <img id="fotoMascota" class="thumbnail" src="~/images/mascota.jpg" style="width:150px; height:150px" />
+}
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            $("#fotoMascota").click(function(){
+                alert("click en foto mascota")
+            });
+        })
+    </script>
+}
