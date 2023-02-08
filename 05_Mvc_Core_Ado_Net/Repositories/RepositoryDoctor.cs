@@ -14,8 +14,9 @@ namespace _05_Mvc_Core_Ado_Net.Repositories
         public RepositoryDoctor()
         {
             string connectionString = @"Data Source=LOCALHOST\DESARROLLO;Initial Catalog=HOSPITAL;Persist Security Info=True;User ID=sa;Password=MCSD2022";
+            string connectionStringCasa = @"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=HOSPITAL;Persist Security Info=True;User ID=sa;Password=MCSD2022";
 
-            this.connection = new SqlConnection(connectionString);
+            this.connection = new SqlConnection(connectionStringCasa);
             this.command = new SqlCommand();
             this.command.Connection = this.connection;
         }
@@ -82,7 +83,7 @@ namespace _05_Mvc_Core_Ado_Net.Repositories
             return doctores;
         }
 
-        public List<Doctor> GetDoctores(int idHospital)
+        public List<Doctor> GetDoctoresHospital(string idHospital)
         {
             string consulta = "SELECT * FROM DOCTOR WHERE HOSPITAL_COD = @IDHOSPITAL";
 
@@ -140,7 +141,7 @@ namespace _05_Mvc_Core_Ado_Net.Repositories
             return especialidades;
         }
 
-        public List<string> GetHospitales()
+        public List<Hospital> GetHospitales()
         {
             string consulta = "SELECT DISTINCT HOSPITAL.HOSPITAL_COD, NOMBRE FROM HOSPITAL INNER JOIN DOCTOR ON HOSPITAL.HOSPITAL_COD = DOCTOR.HOSPITAL_COD";
 
@@ -150,19 +151,21 @@ namespace _05_Mvc_Core_Ado_Net.Repositories
             this.connection.Open();
             this.reader = this.command.ExecuteReader();
 
-            List<string> idHospitales = new List<string>();
+            List<Hospital> hospitales = new List<Hospital>();
 
             while (this.reader.Read())
             {
-                string especialidad = reader["ESPECIALIDAD"].ToString();
+                Hospital hospital = new Hospital();
+                hospital.IdHospital = int.Parse(reader["HOSPITAL_COD"].ToString());
+                hospital.Nombre = reader["NOMBRE"].ToString();
 
-                especialidades.Add(especialidad);
+                hospitales.Add(hospital);
             }
 
             this.connection.Close();
             this.reader.Close();
 
-            return especialidades;
+            return hospitales;
         }
     }
 }

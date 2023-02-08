@@ -1,11 +1,48 @@
-﻿
+﻿@model List<Doctor>
+
+@{
+    List<Hospital> hospitales = ViewData["HOSPITALES"] as List<Hospital>;
+}
+
 <h1>Doctores Hospital</h1>
 
+<form method="post">
+    <select name="idHospital">
+        @foreach (Hospital hospi in hospitales)
+        {
+            <option value="@hospi.IdHospital">@hospi.Nombre</option>
+        }
+    </select>
 
-<select>
-    <option></option>
-</select>
+    <button type="submit" class="success button">Buscar</button>
+</form>
 
 
+@if(Model != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Cod. Hospital</th>
+                <th>Num. Doctor</th>
+                <th>Apellido</th>
+                <th>Especialidad</th>
+                <th>Salario</th>
+            </tr>
+        </thead>
 
+        <tbody>
+            @foreach (Doctor doc in Model)
+            {
+                    <tr>
+                        <td>@doc.HospitalCod</td>
+                        <td>@doc.NumDoctor</td>
+                        <td>@doc.Apellido</td>
+                        <td>@doc.Especialidad</td>
+                        <td>@doc.Salario</td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+}
 

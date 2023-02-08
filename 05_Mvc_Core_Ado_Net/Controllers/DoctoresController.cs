@@ -47,7 +47,20 @@ namespace _05_Mvc_Core_Ado_Net.Controllers
 
         public IActionResult DoctoresHospital()
         {
+            List<Hospital> hospitales = this.repo.GetHospitales();
+            ViewData["HOSPITALES"] = hospitales;
+
             return View();
+        }
+        [HttpPost]
+        public IActionResult DoctoresHospital(string idHospital)
+        {
+            List<Doctor> doctores = this.repo.GetDoctoresHospital(idHospital);
+
+            List<Hospital> hospitales = this.repo.GetHospitales();
+            ViewData["HOSPITALES"] = hospitales;
+
+            return View(doctores);
         }
     }
 }
