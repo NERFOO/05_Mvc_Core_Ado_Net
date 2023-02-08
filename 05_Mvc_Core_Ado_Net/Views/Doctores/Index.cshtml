@@ -1,0 +1,57 @@
+﻿@model List<Doctor>
+
+@{
+    //AQUI SIEMPRE DEBEMOS ONVERTIR VIEWDATA A SUS TIPOS
+    //List<string> especialidades = (List<string>)ViewData["ESPECIALIDADES"];
+    List<string> especialidades = ViewData["ESPECIALIDADES"] as List<string>;
+}
+
+<h1>Doctores</h1>
+
+<form method="post">
+    @*<label>Buscador de doctores por especialidad</label>
+    <input type="text" name="buscador" class="form-control" required />*@
+
+
+    <label>Seleccione una especialidad</label>
+    <select name="especialidad">
+        @foreach(string espe in especialidades)
+        {
+            <option value="@espe">@espe</option>
+        }
+    </select>
+
+    <button type="submit" class="success button">Buscar</button>
+</form>
+
+@if(Model != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Codigo Hospital</th>
+                <th>Numero Doctor</th>
+                <th>Apellido</th>
+                <th>Especialidad</th>
+                <th>Salario</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (Doctor doc in Model)
+            {
+                    <tr>
+                        <td>@doc.HospitalCod</td>
+                        <td>@doc.NumDoctor</td>
+                        <td>@doc.Apellido</td>
+                        <td>@doc.Especialidad</td>
+                        <td>@doc.Salario</td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+

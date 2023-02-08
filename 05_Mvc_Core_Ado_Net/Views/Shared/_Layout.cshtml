@@ -23,6 +23,15 @@
                 <li>
                     <a asp-controller="Hospitales" asp-action="Index">Hospitales</a>
                 </li>
+                <li>
+                    <a asp-controller="Hospitales" asp-action="CreateHospital">Crear hospital</a>
+                </li>
+                <li>
+                    <a asp-controller="Doctores" asp-action="Index">Doctores</a>
+                </li>
+                <li>
+                    <a asp-controller="Doctores" asp-action="DoctoresHospital">Doctores hospital</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -49,23 +58,17 @@
                 //CODIGO ESTATICO DEL LAYOUT PARA EL RESTO DE VISTAS
                 <img class="thumbnail" src="~/images/img1.jpg" style="width:150px; height:150px">
             }
-            <p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus.</p>
-            <div class="callout">
-                <ul class="menu simple">
-                    <li><a href="#">Author: Mike Mikers</a></li>
-                    <li><a href="#">Comments: 3</a></li>
-                </ul>
-            </div>
         </div>
 
         <div>
             @RenderBody()
         </div>
+    </div>
 
-        <script src="~/js/jquery-3.6.3.min.js"></script>
-        <script src="~/js/foundation.js"></script>
+    <script src="~/js/jquery-3.6.3.min.js"></script>
+    <script src="~/js/foundation.js"></script>
 
-        @RenderSection("scripts", false)
+    @RenderSection("scripts", false)
 
     <script>
         $(document).foundation();

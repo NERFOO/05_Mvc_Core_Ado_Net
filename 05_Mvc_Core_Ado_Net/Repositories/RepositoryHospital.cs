@@ -78,5 +78,25 @@ namespace _05_Mvc_Core_Ado_Net.Repositories
             return hospital;
         }
 
+        public void CreateHospital(int idHospital, string nombre, string direccion, string telefono, int camas)
+        {
+            string consulta = "INSERT INTO HOSPITAL VALUES (@ID, @NOMBRE, @DIRECCION, @TELEFONO, @CAMAS)";
+
+            this.command.Parameters.AddWithValue("@ID", idHospital);
+            this.command.Parameters.AddWithValue("@NOMBRE", nombre);
+            this.command.Parameters.AddWithValue("@DIRECCION", direccion);
+            this.command.Parameters.AddWithValue("@TELEFONO", telefono);
+            this.command.Parameters.AddWithValue("@CAMAS", camas);
+
+            this.command.CommandType = CommandType.Text;
+            this.command.CommandText = consulta;
+
+            this.connection.Open();
+            this.command.ExecuteNonQuery();
+
+            this.connection.Close();
+            this.command.Parameters.Clear();
+        }
+
     }
 }

@@ -5,10 +5,12 @@
 <table>
     <thead>
         <tr>
+            <th>Id hospital</th>
             <th>Nombre</th>
             <th>Direccion</th>
             <th>Telefono</th>
             <th>Camas</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -16,10 +18,12 @@
         @foreach(Hospital hospi in Model)
         {
             <tr>
+                <td>@hospi.IdHospital</td>
                 <td>@hospi.Nombre</td>
                 <td>@hospi.Direccion</td>
                 <td>@hospi.Telefono</td>
                 <td>@hospi.Camas</td>
+                <td>@Html.ActionLink("Detalles", "Detalles", "Hospitales", new{ idHospital = hospi.IdHospital })</td>
             </tr>
         }
     </tbody>
